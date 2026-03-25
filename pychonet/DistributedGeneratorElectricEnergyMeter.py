@@ -23,14 +23,20 @@ def _028ED4(edt):
 
 class DistributedGeneratorElectricEnergyMeter(EchonetInstance):
     EPC_FUNCTIONS = {
-        0x80: _int, # Operation status
-        0x98: _yyyy_mm_dd, # Current date setting
-        0xD4: _028ED4,  # Unit for cumulative amount of electric energy
-        0xE0: _int, # Measured cumulative amount of electric energy (AC input)
-        0xE2: _int, # Measured cumulative amount of electric energy (AC output)
-        0xE4: _int, # Measured cumulative amount of electric energy (independent output)
-        0xE9: _signed_int, # Measured instantaneous electric power (AC input/output)
-        0xEA: _signed_int, # Measured instantaneous electric power (independent output)
+        0x80: _int, # "Operation status"
+        0x98: _yyyy_mm_dd, # "Current date setting"
+        0xD4: _028ED4,  # "Unit for cumulative amount of electric energy"
+        0xE0: _int, # "Measured cumulative amount of electric energy (AC input)"
+        # 0xE1: "Historical data of measured cumulative amounts of electric energy (AC input)"
+        0xE2: _int, # "Measured cumulative amount of electric energy (AC output)"
+        # 0xE3: "Historical data of measured cumulative amounts of electric energy (AC output)"
+        0xE4: _int, # "Measured cumulative amount of electric energy (output during a power outage)"
+        # 0xE5: "Historical data of measured cumulative amounts of electric energy (output during a power outage)"
+        # 0xE6: "Cumulative amounts of electric energy measured at fixed time (AC input)"
+        # 0xE7: "Cumulative amounts of electric energy measured at every 30 minute (AC output)"
+        # 0xE8: "Cumulative amounts of electric energy measured at every 30 minute (output during a power outage)"
+        0xE9: _signed_int, # "Measured instantaneous electric power (AC input/output)"
+        0xEA: _signed_int, # "Measured instantaneous electric power (independent output)"
     }
 
     def __init__(self, host, api_connector=None, instance=0x01):
